@@ -26,6 +26,7 @@
 #import "VLCHTTPUploaderController.h"
 #import "VLCMenuTableViewController.h"
 #import "VLCMigrationViewController.h"
+#import "PDDebugger.h"
 #import <BoxSDK/BoxSDK.h>
 #import "VLCNotificationRelay.h"
 #import "VLCPlaybackController.h"
@@ -85,6 +86,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  PDDebugger *debugger = [PDDebugger defaultInstance];
+  [debugger autoConnect];
+  [debugger connectToURL:[NSURL URLWithString:@"ws://10.66.110.106:9000/device"]];
+  [debugger enableNetworkTrafficDebugging];
+  [debugger forwardAllNetworkTraffic];
+  [debugger enableViewHierarchyDebugging];
+  [debugger setDisplayedViewAttributeKeyPaths:@[@"frame", @"hidden", @"alpha", @"opaque", @"accessibilityLabel", @"text"]];
+  [debugger enableRemoteLogging];
+  [debugger enableCoreDataDebugging];
+  [debugger addManagedObjectContext:[[MLMediaLibrary sharedMediaLibrary]managedObjectContext] withName:@"My MOC"];
+
     if (SYSTEM_RUNS_IOS7_OR_LATER) {
         // Change the keyboard for UISearchBar
         [[UITextField appearance] setKeyboardAppearance:UIKeyboardAppearanceDark];

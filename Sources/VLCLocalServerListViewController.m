@@ -643,7 +643,7 @@
         return;
 
     _sapDiscoverer = [[VLCMediaDiscoverer alloc] initWithName:@"sap"];
-    [_sapDiscoverer startDiscoverer];
+//    [_sapDiscoverer startDiscoverer];
     _sapDiscoverer.discoveredMedia.delegate = self;
 }
 
@@ -651,7 +651,7 @@
 {
     return;
 
-    [_sapDiscoverer stopDiscoverer];
+//    [_sapDiscoverer stopDiscoverer];
     _sapDiscoverer = nil;
 }
 
@@ -674,13 +674,13 @@
 
     if (!_dsmDiscoverer)
         _dsmDiscoverer = [[VLCMediaDiscoverer alloc] initWithName:@"dsm"];
-    [_dsmDiscoverer startDiscoverer];
+//    [_dsmDiscoverer startDiscoverer];
     _dsmDiscoverer.discoveredMedia.delegate = self;
 }
 
 - (void)_stopDSMDiscovery
 {
-    [_dsmDiscoverer stopDiscoverer];
+//    [_dsmDiscoverer stopDiscoverer];
     _dsmDiscoverer = nil;
 }
 
